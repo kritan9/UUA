@@ -57,6 +57,9 @@
     <ClInclude Include="Marshmellow.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Boost.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -99,6 +102,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Marshmellow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Boost.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

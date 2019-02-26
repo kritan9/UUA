@@ -154,6 +154,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Boost.h" />
     <ClInclude Include="CharacterMenu.h" />
     <ClInclude Include="Coin.h" />
     <ClInclude Include="Death.h" />
@@ -170,6 +171,7 @@
     <ClInclude Include="Point.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Boost.cpp" />
     <ClCompile Include="CharacterMenu.cpp" />
     <ClCompile Include="Coin.cpp" />
     <ClCompile Include="Death.cpp" />
