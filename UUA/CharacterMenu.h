@@ -1,5 +1,6 @@
 #pragma once
 #include "pch.h"
+#include "Marshmellow.h"
 #include "Game.h"
 class CharacterMenu
 {
@@ -14,6 +15,7 @@ class CharacterMenu
 	sf::Texture dem[2];
 	sf::Sprite demo[2];
 	float offsetX, offsetY;
+	Marshmellow marsh;
 public:
 	static int pos;
 	CharacterMenu();

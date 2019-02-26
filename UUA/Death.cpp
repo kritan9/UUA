@@ -6,6 +6,8 @@ Death::Death()
 {
 	offsetX = 60.0f; offsetY = 10.0f;
 	t.loadFromFile("Images/x.png");
+	over.loadFromFile("Images/gameover.png");
+	gOver.setTexture(over);
 	opts[0].loadFromFile("Images/Button.png");
 	opts[1].loadFromFile("Images/Button2.png");
 	options[0].setTexture(opts[0]);
@@ -18,14 +20,17 @@ Death::Death()
 	txt.setPosition(deathBar.getPosition());
 	for(int i=0;i<3;i++)
 	options[i].setPosition(deathBar.getPosition() + sf::Vector2f(offsetX, offsetY + 200.0f + 100.0f*i));
+	gOver.setPosition(deathBar.getPosition() + sf::Vector2f(25.0f, -110.0f));
 }
 
 void Death::Draw(sf::RenderWindow& window)
 {
+	marsh.Draw(window);
 	window.draw(deathBar);
 	for (int i = 0; i < 3; i++)
 		window.draw(options[i]);
 	window.draw(txt);
+	window.draw(gOver);
 }
 void Death::Update()
 {
@@ -62,7 +67,7 @@ void Death::Update()
 		options[mouseFlag-1].setTexture(opts[0]);
 		mouseFlag = 0;
 	}
-
+	marsh.Update();
 }
 
 bool Mouse::Intersect(float x,float y,float w,float h)

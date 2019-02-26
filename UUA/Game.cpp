@@ -6,7 +6,6 @@
 #include "Coin.h"
 #include "Obstacle.h"
 #include "string.h"
-#include <iostream>
 
 Game::GameState Game::gameState = Game::Menu;
 sf::RenderWindow Game::window;
@@ -58,9 +57,10 @@ void Game::Start()
 	}
 	audioPos = 0;
 	bkgMusic[audioPos].play();
+	bkgMusic[audioPos].setLoop(true);
 	GameObject background;
 	player.Reset();
-	background.Load("Images/background.jpg");
+	background.Load("Images/background.png");
 	background.SetScale((float)WIDTH / background.GetImageSize().width, (float)HEIGHT / background.GetImageSize().height);
 	Path snakeWay(GameObject::roadLength, GameObject::roadWidth+200.0f,55);
 	gameObjectManager.Add("Background", &background);
@@ -135,6 +135,7 @@ void Game::GameLoop()
 				bkgMusic[audioPos].stop();
 				audioPos = 0;
 				bkgMusic[audioPos].play();
+				bkgMusic[audioPos].setLoop(true);
 			}
 			if (event.type == sf::Event::Closed)
 			{
@@ -154,6 +155,7 @@ void Game::GameLoop()
 			{
 				clock.restart();
 				clockTotal.restart();
+				bkgMusic[audioPos].setLoop(false);
 				bkgMusic[audioPos].stop();
 			}
 			if (event.type == sf::Event::Closed)
@@ -172,6 +174,7 @@ void Game::GameLoop()
 
 			if (gameState == Playing)
 			{
+				bkgMusic[audioPos].setLoop(false);
 				bkgMusic[audioPos].stop();
 				audioPos = Random(1, audioNum - 1);
 				bkgMusic[audioPos].play();

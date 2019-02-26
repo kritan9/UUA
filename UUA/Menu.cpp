@@ -11,7 +11,6 @@ Menu::Menu()
 	options[1].setTexture(opts[0]);
 	options[2].setTexture(opts[0]);
 	options[3].setTexture(opts[0]);
-
 	menuBar.setTexture(t);
 	menuBar.setPosition(0.5f*(WIDTH - menuBar.getTextureRect().width), 0.5f*(HEIGHT - menuBar.getTextureRect().height));
 	tx.loadFromFile("Images/text1.png");
@@ -23,6 +22,7 @@ Menu::Menu()
 
 void Menu::Draw(sf::RenderWindow& window)
 {
+	marsh.Draw(window);
 	window.draw(menuBar);
 	for (int i = 0; i < 4; i++)
 		window.draw(options[i]);
@@ -64,6 +64,7 @@ void Menu::Update()
 		options[mouseFlag - 1].setTexture(opts[0]);
 		mouseFlag = 0;
 	}
+	marsh.Update();
 
 }
 

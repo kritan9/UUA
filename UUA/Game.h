@@ -1,7 +1,5 @@
 #pragma once
 #include"pch.h"
-#include <SFML/Window.hpp>
-#include <SFML/Graphics.hpp>
 #include "GameObject.h"
 #include "Point.h"
 #include "Death.h"

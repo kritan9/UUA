@@ -8,7 +8,8 @@
 
 #ifndef PCH_H
 #define PCH_H
-
+#include <SFML/Window.hpp>
+#include <SFML/Graphics.hpp>
 // TODO: add headers that you want to pre-compile here
 
 #endif //PCH_H

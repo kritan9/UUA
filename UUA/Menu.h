@@ -1,5 +1,8 @@
 #pragma once
+#include "Marshmellow.h"
 #include "Game.h"
+class Marshmellow;
+
 class Menu
 {
 	sf::Texture t;
@@ -9,6 +12,7 @@ class Menu
 	sf::Texture opts[2];
 	sf::Sprite options[4];
 	float offsetX, offsetY;
+	Marshmellow marsh;
 public:
 	Menu();
 	void Draw(sf::RenderWindow&);
