@@ -1,6 +1,5 @@
 #include"pch.h"
 #include "GameObjectManager.h"
-#include <iostream>
 
 int BoxCollision(sf::Vector3f aPos, sf::Vector3f aSize, sf::Vector3f bPos, sf::Vector3f bSize)
 {
@@ -20,8 +19,8 @@ GameObjectManager::GameObjectManager()
 
 GameObjectManager::~GameObjectManager()
 {
-   std::for_each(gameObjects.begin(), gameObjects.end(), GameObjectDeallocator());
-   obstacles.clear();
+		gameObjects.clear();
+		 obstacles.clear();
 }
 
 void GameObjectManager::Add(std::string name, GameObject* gameObject)
@@ -105,6 +104,7 @@ void GameObjectManager::Collision(Player &player)
 			if (obstacles[i]->isCoin())
 			{
 				Game::coin.play();
+				Game::coinCount++;
 				obstacles.erase(obstacles.begin()+i);
 				length -= 1; i--;
 			}
@@ -123,6 +123,9 @@ void GameObjectManager::Collision(Player &player)
 void GameObjectManager::Reset()
 {
 	obstacles.clear();
+	GameObject::flag = 0;
+	GameObject::flag2 = 0;
+	GameObject::amp = 0.0f;
 	Game::level = 1;
 	GameObject::velocity = VELOCITY;
 	Game::spawnTime = 300.0f / GameObject::velocity;

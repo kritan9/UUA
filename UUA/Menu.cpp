@@ -55,7 +55,7 @@ void Menu::Update()
 				Game::gameState = Game::Playing;
 			}
 			else if (mouseFlag == 2) {Game::gameState = Game::Character;}
-			//else if (mouseFlag == 3) {Game::gameState = Game::Credits;}
+			else if (mouseFlag == 3) {Game::gameState = Game::HighScore;}
 			else if (mouseFlag == 4)
 			{
 				Game::gameState = Game::Exiting;

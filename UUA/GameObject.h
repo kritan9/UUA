@@ -12,6 +12,8 @@ protected:
 	sf::Sprite  sprite;
 public:
 	GameObject();
+	static float amp ;
+	static int flag , flag2 ;
 	static float curveX(float z);
 	static float roadLength, roadWidth;
 	virtual void Load(std::string file);

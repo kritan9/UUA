@@ -1,6 +1,5 @@
 #include "pch.h"
 #include "CharacterMenu.h"
-#include "iostream"
 
 int CharacterMenu::pos = 0;
 CharacterMenu::CharacterMenu()

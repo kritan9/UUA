@@ -8,7 +8,7 @@ class CharacterMenu
 	sf::Sprite menuBar;
 	sf::Texture tx;
 	sf::Sprite txt;
-	sf::Texture opts[5];
+	sf::Texture opts[2];
 	sf::Sprite options;
 	sf::Texture arr[2];
 	sf::Sprite arrows[2];

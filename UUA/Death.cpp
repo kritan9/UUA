@@ -1,9 +1,12 @@
 #include "pch.h"
 #include "Death.h"
-#include <iostream>
 
 Death::Death()
 {
+	text1.setFont(Game::font);
+	text1.setScale(sf::Vector2f(2.0f, 2.0f));
+	text2.setFont(Game::font);
+	text2.setScale(sf::Vector2f(2.0f, 2.0f));
 	offsetX = 60.0f; offsetY = 10.0f;
 	t.loadFromFile("Images/x.png");
 	over.loadFromFile("Images/gameover.png");
@@ -15,6 +18,8 @@ Death::Death()
 	options[2].setTexture(opts[0]);
 	deathBar.setTexture(t);
 	deathBar.setPosition(0.5f*(WIDTH - deathBar.getTextureRect().width), 0.5f*(HEIGHT - deathBar.getTextureRect().height));
+	text1.setPosition(sf::Vector2f(deathBar.getPosition()+sf::Vector2f(offsetX,offsetY)));
+	text2.setPosition(sf::Vector2f(deathBar.getPosition() + sf::Vector2f(offsetX, offsetY+70.0f)));
 	tx.loadFromFile("Images/text3.png");
 	txt.setTexture(tx);
 	txt.setPosition(deathBar.getPosition());
@@ -31,9 +36,13 @@ void Death::Draw(sf::RenderWindow& window)
 		window.draw(options[i]);
 	window.draw(txt);
 	window.draw(gOver);
+	window.draw(text1);
+	window.draw(text2);
 }
 void Death::Update()
 {
+	text1.setString("Score: " + Marshmellow::numToString(Game::score));
+	text2.setString(" Coin: " + Marshmellow::numToString(Game::coinCount));
 	static int mouseFlag = 0;
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mouseFlag == 0)
 	{

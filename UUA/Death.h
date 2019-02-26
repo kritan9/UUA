@@ -18,6 +18,8 @@ class Death
 	sf::Sprite deathBar;
 	sf::Texture opts[2];
 	sf::Sprite options[3];
+	sf::Text text1;
+	sf::Text text2;
 	float offsetX, offsetY;
 	Marshmellow marsh;
 public:

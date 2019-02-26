@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "Boost.h"
 
 unsigned int Boost::strength = 0;

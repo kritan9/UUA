@@ -4,6 +4,7 @@
 #include "Point.h"
 #include "Death.h"
 #include "Menu.h"
+#include "Leaderboard.h"
 #include "CharacterMenu.h"
 #include <SFML/Audio.hpp>
 #include <time.h>
@@ -16,6 +17,7 @@ class GameObject;
 class Death;
 class Menu;
 class CharacterMenu;
+class Leaderboard;
 
 class Game
 {
@@ -26,11 +28,12 @@ private:
 	static Death d;
 	static Menu m;
 	static CharacterMenu cm;
+	static Leaderboard leadBoard;
 public:
 	Game();
 	enum GameState {
 		Uninitialized,  Paused,
-		Menu, Playing, Leaderboard, Exiting, Dead,Character
+		Menu, Playing, HighScore, Exiting, Dead,Character
 	};
 	static float spawnTime;
 	static bool IsExiting();
@@ -43,6 +46,9 @@ public:
 	static sf::Event event;
 	static sf::Sound coin;
 	static sf::Sound death;
+	static int coinCount;
+	static sf::Font font;
+	static int score;
 	static void Start();
 	static sf::RenderWindow& GetWindow() { return window; }
 	~Game();

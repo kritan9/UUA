@@ -21,13 +21,6 @@ public:
 private:
 	std::map<std::string, GameObject*> gameObjects;
 	std::vector<GameObject*> obstacles;
-		struct GameObjectDeallocator
-		{
-		  void operator()(const std::pair<std::string, GameObject*> & p) const
-		{
-			delete[] p.second;
-		}
-	};
 
 };
 

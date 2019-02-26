@@ -1,7 +1,6 @@
 #include "pch.h"
 #include "Player.h"
 #define PLAYERVELOCITY 3000.0f
-#include <iostream>
 
 float TimePeriod = 0.5f;
 float uSpeed = 4.05f*Game::yLevel / TimePeriod;

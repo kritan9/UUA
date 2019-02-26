@@ -1,11 +1,12 @@
 #include "pch.h"
-#include <cmath>
 #include "GameObject.h"
-#include <iostream>
+
 #define PI 3.14159265f
 float sineConstant =  PI /(2* GameObject::roadLength*0.9f);
 float GameObject::velocity = VELOCITY;
 float GameObject::roadLength = 5000.0f, GameObject::roadWidth = WIDTH-100.0f ;
+float GameObject::amp=0.0f;
+ int GameObject::flag=0, GameObject::flag2=0;
 float GameObject::curveX(float z) 
 {
 	if (Game::clockTotal.getElapsedTime().asSeconds()<1.0f) return 0;
@@ -14,8 +15,6 @@ float GameObject::curveX(float z)
 			float temp;
 			float dt = Game::clockTotal.getElapsedTime().asSeconds() - 1.0f;
 			static sf::Clock timePause;
-			static float amp = 0;
-			static int flag = 0,flag2=0;
 			if (flag%2 == 0)
 			{
 				if ( flag2 == 0)
