@@ -68,17 +68,18 @@ void Obstacle::Update(float dt)
 
 sf::Vector3f Obstacle::position3d()
 {
-	if (obsNo == 0)
-	return sf::Vector3f(x, y, z);
+	if(obsNo==1) return sf::Vector3f(x+20.0f, y, z);
+	else return sf::Vector3f(x , y, z);
 }
 
 sf::Vector3f Obstacle::size()
 {
+	if(obsNo==1) return sf::Vector3f(width-40.0f, -height, thickness);
 	return sf::Vector3f(width, -height, thickness);
 }
 
 bool Obstacle::destroy() {
-	if (z < -10.0f) return true;
+	if (z < -15.0f) return true;
 	else return false;
 }
 

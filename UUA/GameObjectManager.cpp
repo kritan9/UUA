@@ -100,7 +100,6 @@ void GameObjectManager::Collision(Player &player)
 	while (i<length)
 	{
 		if (obstacles[i]->obsNo != 0)
-		{
 			if (BoxCollision(player.position3d(), player.size(), obstacles[i]->position3d(), obstacles[i]->size()) == 1)
 			{
 				if (obstacles[i]->isCoin())
@@ -117,7 +116,6 @@ void GameObjectManager::Collision(Player &player)
 				}
 
 			}
-		}
 		i++;
 	}
 
