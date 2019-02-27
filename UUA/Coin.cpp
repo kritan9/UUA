@@ -5,6 +5,7 @@ float roadBegin = (WIDTH - GameObject::roadWidth)*0.5f;
 
 Coin::Coin()//x coordinate is from the left side of the road
 {
+	obsNo = -1;
 	width = 60.0f; height = 60.0f; thickness = 30.0f;
 	roadX = (float)Game::Random(0, (int)(GameObject::roadWidth - thickness));
 	z = GameObject::roadLength;

@@ -31,7 +31,6 @@ CharacterMenu::CharacterMenu()
 
 void CharacterMenu::Draw(sf::RenderWindow& window)
 {
-	marsh.Draw(window);
 	window.draw(menuBar);
 	window.draw(options);
 	window.draw(arrows[0]);
@@ -82,7 +81,6 @@ void CharacterMenu::Update()
 		}
 		mouseFlag = 0;
 	}
-	marsh.Update();
 }
 
 CharacterMenu::~CharacterMenu()

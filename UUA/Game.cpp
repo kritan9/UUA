@@ -26,6 +26,8 @@ sf::Font Game::font;
 sf::Text text1,text2,text3;
 Death Game::d;
 Menu Game::m;
+Marshmellow marsh(5.0f,50,"Images/v/v ",".jpg");
+Marshmellow backgrnd(10.0f, 19, "Images/background/dskajd ", " copy.png");
 Leaderboard Game::leadBoard;
 CharacterMenu Game::cm;
 std::string audioFiles[]={ "Sounds/menuLoop.ogg","Sounds/StereoMadness.ogg","Sounds/TimeMachine.ogg","Sounds/TheoryOfEverything.ogg","Sounds/Jumper.ogg","Sounds/HexagonForce.ogg","Sounds/GeometricalDominator.ogg","Sounds/Electroman.ogg","Sounds/Electrodynamix.ogg","Sounds/DryOut.ogg","Sounds/Deadlocked.ogg","Sounds/Cycles.ogg","Sounds/Clutterfunk.ogg","Sounds/Clubstep.ogg","Sounds/CantLetGo.ogg","Sounds/BlastProcessing.ogg","Sounds/BaseAfterBase.ogg","Sounds/BackOnTrack.ogg" };
@@ -66,12 +68,13 @@ void Game::Start()
 	audioPos = 0;
 	bkgMusic[audioPos].play();
 	bkgMusic[audioPos].setLoop(true);
-	GameObject background;
+	
+	//GameObject background;
 	player.Reset();
-	background.Load("Images/background.png");
-	background.SetScale((float)WIDTH / background.GetImageSize().width, (float)HEIGHT / background.GetImageSize().height);
+	//background.Load("Images/background.png");
+	//background.SetScale((float)WIDTH / background.GetImageSize().width, (float)HEIGHT / background.GetImageSize().height);
 	Path snakeWay(GameObject::roadLength, GameObject::roadWidth+200.0f,55);
-	gameObjectManager.Add("Background", &background);
+	//gameObjectManager.Add("Background", &background);
 	gameObjectManager.Add("Path", &snakeWay);
 	gameObjectManager.Add("Player",&player );
 	while (!IsExiting() )
@@ -113,9 +116,13 @@ void Game::GameLoop()
 			}
 			if (delT >= spawnTime)
 			{
+				if(Random(0,10)==4)gameObjectManager.Add(" ", new Obstacle(0));
 				if (q == 4)
 				{	
-					if(Random(0,level)!=0) gameObjectManager.Add(" ", new Obstacle());
+					if (Random(0, level) != 0)
+					{ 
+						gameObjectManager.Add(" ", new Obstacle(Random(1, 1)));
+					}
 					q = 0;
 				}
 				else
@@ -135,6 +142,8 @@ void Game::GameLoop()
 			window.clear();
 			gameObjectManager.UpdateAll(clock.getElapsedTime().asSeconds());
 			clock.restart();
+			backgrnd.Update();
+			backgrnd.Draw(window);
 			gameObjectManager.DrawAll(window);
 			window.draw(text1);
 			window.draw(text2);
@@ -162,7 +171,8 @@ void Game::GameLoop()
 		{
 			window.clear();
 			d.Update();
-			//gameObjectManager.Get("Background")->Draw(window);
+			marsh.Update();
+			marsh.Draw(window);
 			d.Draw(window);
 			window.display();
 
@@ -185,7 +195,8 @@ void Game::GameLoop()
 		{
 			window.clear();
 			m.Update();
-			gameObjectManager.Get("Background")->Draw(window);
+			marsh.Update();
+			marsh.Draw(window);
 			m.Draw(window);
 			window.display();
 
@@ -210,7 +221,8 @@ void Game::GameLoop()
 		{
 			window.clear();
 			cm.Update();
-			//gameObjectManager.Get("Background")->Draw(window);
+			marsh.Update();
+			marsh.Draw(window);
 			cm.Draw(window);
 			window.display();
 
@@ -224,7 +236,8 @@ void Game::GameLoop()
 		{
 			window.clear();
 			leadBoard.Update();
-			//gameObjectManager.Get("Background")->Draw(window);
+			marsh.Update();
+			marsh.Draw(window);
 			leadBoard.Draw(window);
 			window.display();
 

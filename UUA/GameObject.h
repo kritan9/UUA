@@ -12,6 +12,7 @@ protected:
 	sf::Sprite  sprite;
 public:
 	GameObject();
+	int obsNo;
 	static float amp ;
 	static int flag , flag2 ;
 	static float curveX(float z);

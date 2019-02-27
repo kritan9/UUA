@@ -99,21 +99,24 @@ void GameObjectManager::Collision(Player &player)
 	int i = 0;
 	while (i<length)
 	{
-		if (BoxCollision(player.position3d(), player.size(), obstacles[i]->position3d(), obstacles[i]->size()) == 1)
+		if (obstacles[i]->obsNo != 0)
 		{
-			if (obstacles[i]->isCoin())
+			if (BoxCollision(player.position3d(), player.size(), obstacles[i]->position3d(), obstacles[i]->size()) == 1)
 			{
-				Game::coin.play();
-				Game::coinCount++;
-				obstacles.erase(obstacles.begin()+i);
-				length -= 1; i--;
+				if (obstacles[i]->isCoin())
+				{
+					Game::coin.play();
+					Game::coinCount++;
+					obstacles.erase(obstacles.begin() + i);
+					length -= 1; i--;
+				}
+				else
+				{
+					Game::death.play();
+					Game::gameState = Game::Dead;
+				}
+
 			}
-			else
-			{
-				Game::death.play();
-				Game::gameState = Game::Dead;
-			}
-			
 		}
 		i++;
 	}

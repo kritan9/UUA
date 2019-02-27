@@ -22,7 +22,6 @@ Menu::Menu()
 
 void Menu::Draw(sf::RenderWindow& window)
 {
-	marsh.Draw(window);
 	window.draw(menuBar);
 	for (int i = 0; i < 4; i++)
 		window.draw(options[i]);
@@ -64,7 +63,6 @@ void Menu::Update()
 		options[mouseFlag - 1].setTexture(opts[0]);
 		mouseFlag = 0;
 	}
-	marsh.Update();
 
 }
 

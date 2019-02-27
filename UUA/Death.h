@@ -21,7 +21,6 @@ class Death
 	sf::Text text1;
 	sf::Text text2;
 	float offsetX, offsetY;
-	Marshmellow marsh;
 public:
 	Death();
 	void Draw(sf::RenderWindow&);

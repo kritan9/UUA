@@ -12,7 +12,6 @@ class Menu
 	sf::Texture opts[2];
 	sf::Sprite options[4];
 	float offsetX, offsetY;
-	Marshmellow marsh;
 public:
 	Menu();
 	void Draw(sf::RenderWindow&);

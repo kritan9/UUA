@@ -30,7 +30,6 @@ Death::Death()
 
 void Death::Draw(sf::RenderWindow& window)
 {
-	marsh.Draw(window);
 	window.draw(deathBar);
 	for (int i = 0; i < 3; i++)
 		window.draw(options[i]);
@@ -76,7 +75,6 @@ void Death::Update()
 		options[mouseFlag-1].setTexture(opts[0]);
 		mouseFlag = 0;
 	}
-	marsh.Update();
 }
 
 bool Mouse::Intersect(float x,float y,float w,float h)

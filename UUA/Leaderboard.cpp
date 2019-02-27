@@ -28,7 +28,6 @@ Leaderboard::Leaderboard()
 
 void Leaderboard::Draw(sf::RenderWindow& window)
 {
-	marsh.Draw(window);
 	window.draw(menuBar);
 	window.draw(options);
 	window.draw(txt);
@@ -56,7 +55,6 @@ void Leaderboard::Update()
 			options.setTexture(opts[0]);
 			mouseFlag = 0;
 	}
-	marsh.Update();
 }
 
 

@@ -19,7 +19,7 @@ Point::~Point()
 }
 
 float Point::Z = 0;
-float Point::x0 =WIDTH/2, Point::y0 = 300.0f, Point::z0 = -500;
+float Point::x0 =WIDTH/2, Point::y0 = 340.0f, Point::z0 = -500;
 
 void Point::project()
 {

@@ -9,7 +9,6 @@ class Leaderboard
 	sf::Text text[5];
 	int totalCoin;
 	float offsetX, offsetY;
-	Marshmellow marsh;
 	sf::Texture t;
 	sf::Sprite menuBar;
 	sf::Texture tx;

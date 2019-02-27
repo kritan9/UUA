@@ -1,14 +1,15 @@
 #pragma once
 #include "Game.h"
+
 class Obstacle :
 	public GameObject
 {
 	float x, y, z, roadX; //roadX=distance from road's left side
 	Point p;
 	float width, height, thickness;
+	int imageNo;
 public:
-
-	Obstacle( float w = 300.0f, float h = 100.0f, float th = 50.0f);
+	Obstacle( int n);
 	void Update(float dt);
 	bool isObstacle() { return true; }
 	bool destroy();
