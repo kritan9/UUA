@@ -6,6 +6,7 @@
 #include "Menu.h"
 #include "Leaderboard.h"
 #include "CharacterMenu.h"
+#include "scoreRecord.h"
 #include <SFML/Audio.hpp>
 #include <time.h>
 
@@ -18,6 +19,7 @@ class Death;
 class Menu;
 class CharacterMenu;
 class Leaderboard;
+class scoreRecord;
 
 
 class Game
@@ -30,6 +32,7 @@ private:
 	static Menu m;
 	static CharacterMenu cm;
 	static Leaderboard leadBoard;
+	static scoreRecord scrRecord;
 public:
 	Game();
 	enum GameState {

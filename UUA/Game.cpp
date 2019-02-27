@@ -29,6 +29,7 @@ Menu Game::m;
 Marshmellow marsh(5.0f,50,"Images/v/v ",".jpg");
 Marshmellow backgrnd(10.0f, 19, "Images/background/dskajd ", " copy.png");
 Leaderboard Game::leadBoard;
+scoreRecord Game::scrRecord;
 CharacterMenu Game::cm;
 std::string audioFiles[]={ "Sounds/menuLoop.ogg","Sounds/StereoMadness.ogg","Sounds/TimeMachine.ogg","Sounds/TheoryOfEverything.ogg","Sounds/Jumper.ogg","Sounds/HexagonForce.ogg","Sounds/GeometricalDominator.ogg","Sounds/Electroman.ogg","Sounds/Electrodynamix.ogg","Sounds/DryOut.ogg","Sounds/Deadlocked.ogg","Sounds/Cycles.ogg","Sounds/Clutterfunk.ogg","Sounds/Clubstep.ogg","Sounds/CantLetGo.ogg","Sounds/BlastProcessing.ogg","Sounds/BaseAfterBase.ogg","Sounds/BackOnTrack.ogg" };
 int audioNum = 18; int audioPos = 0;
@@ -49,13 +50,16 @@ int Game::Random(int a, int b)
 }
 void Game::Start()
 {
-	leadBoard.Store();
 	font.loadFromFile("Images/constan.ttf");
 	text1.setFont(font); text2.setFont(font);
 	text3.setFont(font); 
 	text2.setPosition(sf::Vector2f(WIDTH - 200.0f, 0));
 	text3.setPosition(sf::Vector2f(WIDTH*0.5-100.0f, 0));
 	window.create(sf::VideoMode(WIDTH, HEIGHT, 32), "Up Up And Away");
+	if (window.isOpen() == false)
+	{
+		std::cerr << "Coundnot Open Window";
+	}
 	coinBuffer.loadFromFile("Sounds/coin.wav");
 	coin.setBuffer(coinBuffer);
 	coin.setVolume(35);
@@ -252,9 +256,21 @@ void Game::GameLoop()
 		}
 		case RecordScore:
 		{
+			int i = 0;
 			window.clear();
-
+			marsh.Update();
+			i=scrRecord.Update();
+			marsh.Draw(window);
+			scrRecord.Draw(window);
 			window.display();
+
+			if (i == 1)
+			{
+				gameState = Dead;
+				leadBoard.record(scrRecord.name, Game::score);
+				scrRecord.name = "";
+				leadBoard.Store();
+			}
 
 			if (event.type == sf::Event::Closed)
 			{

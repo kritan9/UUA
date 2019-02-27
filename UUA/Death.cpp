@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "Death.h"
+#include "Game.h"
 
 Death::Death()
 {
