@@ -1,12 +1,15 @@
 #pragma once
 #include "pch.h"
 #include "Game.h"
-
-class Leaderboard
+struct scorelist
 {
 	std::string names[5];
 	int scores[5];
+};
+class Leaderboard
+{
 	sf::Text text[5];
+	scorelist scorers;
 	int totalCoin;
 	float offsetX, offsetY;
 	sf::Texture t;

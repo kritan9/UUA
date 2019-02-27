@@ -2,11 +2,10 @@
 #include "Leaderboard.h"
 
 
-
 Leaderboard::Leaderboard()
 {
 	std::fstream scoreFile("gameData.bin", std::ios::in | std::ios::binary);
-	scoreFile.read(reinterpret_cast<char*>(this), sizeof(*this));
+	scoreFile.read(reinterpret_cast<char*>(&scorers), sizeof(scorelist));
 	scoreFile.close();
 	offsetX = 60.0f; offsetY = 100.0f;
 	t.loadFromFile("Images/x.png");
@@ -19,11 +18,15 @@ Leaderboard::Leaderboard()
 	opts[1].loadFromFile("Images/Button2.png");
 	options.setTexture(opts[0]);
 	options.setPosition(menuBar.getPosition() + sf::Vector2f(offsetX, offsetY + 100.0f * 3));
+
 	for (int i = 0; i < 5; i++)
 	{
-		text[i].setFont(Game::font); text[i].setString(names[i] + " : " + Marshmellow::numToString(scores[i]));
+		text[i].setFont(Game::font); 
+		text[i].setString(scorers.names[i] +":"+ Marshmellow::numToString(scorers.scores[i]));
 		text[i].setPosition(menuBar.getPosition() + sf::Vector2f(offsetX, offsetY-30.0f + 60.0f*i));
 	}
+
+	
 }
 
 void Leaderboard::Draw(sf::RenderWindow& window)
@@ -61,11 +64,11 @@ void Leaderboard::Update()
 void Leaderboard::Store()
 {
 	std::fstream scoreFile("gameData.bin", std::ios::out | std::ios::binary);
-	scoreFile.write(reinterpret_cast<char*>(this), sizeof(*this));
+	scoreFile.write(reinterpret_cast<char*>(&scorers), sizeof(scorelist));
 	scoreFile.close();
 	for (int i = 0; i < 5; i++)
 	{
-		text[i].setString(names[i] + " : " + Marshmellow::numToString(scores[i]));
+		text[i].setString(scorers.names[i] + " : " + Marshmellow::numToString(scorers.scores[i]));
 	}
 }
 
@@ -73,7 +76,7 @@ int Leaderboard::check(int s)
 {
 	for (int i = 0; i < 5; i++)
 	{
-		if (s > scores[i]) return 1;
+		if (s > scorers.scores[i]) return 1;
 	}
 	return 0;
 }
@@ -86,13 +89,13 @@ void Leaderboard::record(std::string a, int sc)
 	{
 		if (i == 4)
 		{
-			scores[i] = sc; names[i] = a;
+			scorers.scores[i] = sc; scorers.names[i] = a;
 			break;
 		}
-		if (sc >= scores[i])
+		if (sc >= scorers.scores[i])
 		{
-			temp = scores[i]; tem = names[i];
-			scores[i] = sc;   names[i] = a;
+			temp = scorers.scores[i]; tem = scorers.names[i];
+			scorers.scores[i] = sc;   scorers.names[i] = a;
 			sc = temp;			a = tem;
 		}
 	}

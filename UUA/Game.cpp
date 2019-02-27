@@ -49,6 +49,7 @@ int Game::Random(int a, int b)
 }
 void Game::Start()
 {
+	leadBoard.Store();
 	font.loadFromFile("Images/constan.ttf");
 	text1.setFont(font); text2.setFont(font);
 	text3.setFont(font); 
@@ -69,12 +70,8 @@ void Game::Start()
 	bkgMusic[audioPos].play();
 	bkgMusic[audioPos].setLoop(true);
 	
-	//GameObject background;
 	player.Reset();
-	//background.Load("Images/background.png");
-	//background.SetScale((float)WIDTH / background.GetImageSize().width, (float)HEIGHT / background.GetImageSize().height);
 	Path snakeWay(GameObject::roadLength, GameObject::roadWidth+200.0f,55);
-	//gameObjectManager.Add("Background", &background);
 	gameObjectManager.Add("Path", &snakeWay);
 	gameObjectManager.Add("Player",&player );
 	while (!IsExiting() )
@@ -159,7 +156,13 @@ void Game::GameLoop()
 				audioPos = 0;
 				bkgMusic[audioPos].play();
 				bkgMusic[audioPos].setLoop(true);
+
+				if (leadBoard.check(score) == 1)
+				{
+					gameState = RecordScore;
+				}
 			}
+			
 			if (event.type == sf::Event::Closed)
 			{
 				gameState = Game::Exiting;
@@ -239,6 +242,18 @@ void Game::GameLoop()
 			marsh.Update();
 			marsh.Draw(window);
 			leadBoard.Draw(window);
+			window.display();
+
+			if (event.type == sf::Event::Closed)
+			{
+				gameState = Game::Exiting;
+			}
+			break;
+		}
+		case RecordScore:
+		{
+			window.clear();
+
 			window.display();
 
 			if (event.type == sf::Event::Closed)

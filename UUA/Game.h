@@ -34,7 +34,7 @@ public:
 	Game();
 	enum GameState {
 		Uninitialized,  Paused,
-		Menu, Playing, HighScore, Exiting, Dead,Character
+		Menu, Playing, HighScore, Exiting, Dead,Character,RecordScore
 	};
 	static float spawnTime;
 	static bool IsExiting();
