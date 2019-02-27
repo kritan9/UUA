@@ -11,6 +11,8 @@ class scoreRecord :
 	sf::Texture nameTexture;
 	sf::Sprite nameSprite;
 	sf::Text nameEntered;
+	sf::Texture high;
+	sf::Sprite highscore;
 public:
 	scoreRecord();
 	~scoreRecord();

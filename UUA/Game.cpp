@@ -23,6 +23,8 @@ sf::Sound Game::death;
 sf::SoundBuffer coinBuffer;
 sf::SoundBuffer deathBuffer;
 sf::Font Game::font;
+sf::Texture Game::lgo;
+sf::Sprite Game::logo;
 sf::Text text1,text2,text3;
 Death Game::d;
 Menu Game::m;
@@ -50,6 +52,8 @@ int Game::Random(int a, int b)
 }
 void Game::Start()
 {
+	lgo.loadFromFile("Images/logo.png");
+	logo.setTexture(lgo);
 	font.loadFromFile("Images/constan.ttf");
 	text1.setFont(font); text2.setFont(font);
 	text3.setFont(font); 
@@ -205,6 +209,7 @@ void Game::GameLoop()
 			marsh.Update();
 			marsh.Draw(window);
 			m.Draw(window);
+			window.draw(logo);
 			window.display();
 
 			if (gameState == Playing)
@@ -231,6 +236,7 @@ void Game::GameLoop()
 			marsh.Update();
 			marsh.Draw(window);
 			cm.Draw(window);
+			window.draw(logo);
 			window.display();
 
 			if (event.type == sf::Event::Closed)
@@ -246,6 +252,7 @@ void Game::GameLoop()
 			marsh.Update();
 			marsh.Draw(window);
 			leadBoard.Draw(window);
+			window.draw(logo);
 			window.display();
 
 			if (event.type == sf::Event::Closed)

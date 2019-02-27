@@ -33,6 +33,8 @@ private:
 	static CharacterMenu cm;
 	static Leaderboard leadBoard;
 	static scoreRecord scrRecord;
+	static sf::Texture lgo;
+	static sf::Sprite logo;
 public:
 	Game();
 	enum GameState {

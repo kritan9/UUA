@@ -10,6 +10,9 @@ scoreRecord::scoreRecord()
 	nameSprite.setPosition(sf::Vector2f(WIDTH*0.5f,HEIGHT*0.5f));
 	nameEntered.setFont(Game::font);
 	nameEntered.setPosition(sf::Vector2f(nameSprite.getPosition()-sf::Vector2f(nameTexture.getSize().x*0.5f-10.0f,0.0f)));
+	high.loadFromFile("Images/highscore.png");
+	highscore.setTexture(high);
+	highscore.setPosition(sf::Vector2f((WIDTH-high.getSize().x)*0.5f, 200.0f));
 	flag = 0;
 }
 
@@ -18,6 +21,7 @@ void scoreRecord::Draw(sf::RenderWindow& window)
 	Death::Draw(window);
 	window.draw(nameSprite);
 	window.draw(nameEntered);
+	window.draw(highscore);
 }
 int scoreRecord::Update()
 {
