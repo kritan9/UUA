@@ -51,14 +51,16 @@ void Player::Update(float dt)
 	if (jump == 1) 
 	{
 		t = clock.getElapsedTime().asSeconds();
-		y = (yLevel*Game::yLevel-50.0f) + uSpeed*t-0.5f*acc*t*t;
+	//	y = (yLevel*Game::yLevel-50.0f) + uSpeed*t-0.5f*acc*t*t;
+		y = (yLevel*Game::yLevel - 50.0f) + uSpeed * 0.5f*t;
 		//if (yLevel == 2) { if (y >= ((yLevel+1)*Game::yLevel - 50.0f)) { yLevel = 3; y=yLevel*Game::yLevel - 50.0f;  jump = 0; } }
 		if (yLevel == 1) { if (y >= ((yLevel + 1)*Game::yLevel - 50.0f)) { yLevel = 2; y=yLevel*Game::yLevel - 50.0f;  jump = 0; } }
 	}
 	if (jump == -1)
 	{
 		t = clock.getElapsedTime().asSeconds();
-		y = (yLevel*Game::yLevel - 50.0f) - uSpeed * t + 0.5f*acc*t*t;
+		//y = (yLevel*Game::yLevel - 50.0f) - uSpeed * t + 0.5f*acc*t*t;
+		y = (yLevel*Game::yLevel - 50.0f) - uSpeed * 0.5f*t;
 		if (yLevel == 2) { if (y <= ((yLevel - 1)*Game::yLevel - 50.0f)) { yLevel = 1; y=yLevel*Game::yLevel - 50.0f;  jump = 0;} }
 		//if (yLevel == 3) { if (y <= ((yLevel - 1)*Game::yLevel - 50.0f)) { yLevel = 2; y=yLevel*Game::yLevel - 50.0f;  jump = 0;} }
 	}
