@@ -14,7 +14,7 @@ GameObjectManager Game::gameObjectManager;
 Player player(150.0f, 150.0f);
 sf::Event Game::event;
 int Game::level = 1;
-float Game::yLevel = 150.0f;
+float Game::yLevel = 200.0f;
 float Game::spawnTime = 300.0f / GameObject::velocity;
 int Game::score = 0;
 int Game::coinCount = 0;
@@ -33,8 +33,8 @@ Marshmellow backgrnd(10.0f, 19, "Images/background/dskajd ", " copy.png");
 Leaderboard Game::leadBoard;
 scoreRecord Game::scrRecord;
 CharacterMenu Game::cm;
-std::string audioFiles[]={ "Sounds/menuLoop.ogg","Sounds/StereoMadness.ogg","Sounds/TimeMachine.ogg","Sounds/TheoryOfEverything.ogg","Sounds/Jumper.ogg","Sounds/HexagonForce.ogg","Sounds/GeometricalDominator.ogg","Sounds/Electroman.ogg","Sounds/Electrodynamix.ogg","Sounds/DryOut.ogg","Sounds/Deadlocked.ogg","Sounds/Cycles.ogg","Sounds/Clutterfunk.ogg","Sounds/Clubstep.ogg","Sounds/CantLetGo.ogg","Sounds/BlastProcessing.ogg","Sounds/BaseAfterBase.ogg","Sounds/BackOnTrack.ogg" };
-int audioNum = 18; int audioPos = 0;
+std::string audioFiles[] = { "Sounds/menuLoop.ogg","Sounds/StereoMadness.ogg","Sounds/TimeMachine.ogg","Sounds/TheoryOfEverything.ogg","Sounds/Jumper.ogg","Sounds/HexagonForce.ogg" };// , "Sounds/GeometricalDominator.ogg", "Sounds/Electroman.ogg", "Sounds/Electrodynamix.ogg", "Sounds/DryOut.ogg", "Sounds/Deadlocked.ogg", "Sounds/Cycles.ogg", "Sounds/Clutterfunk.ogg", "Sounds/Clubstep.ogg", "Sounds/CantLetGo.ogg", "Sounds/BlastProcessing.ogg", "Sounds/BaseAfterBase.ogg", "Sounds/BackOnTrack.ogg" };
+int audioNum = 6; int audioPos = 0;
 sf::Music bkgMusic[18];
 
 Game::Game()
@@ -115,7 +115,7 @@ void Game::GameLoop()
 			{
 				delT2 = 0.0f;
 				level++;
-				if (GameObject::velocity <= 10000.0f*RELEASE) 
+				if (GameObject::velocity <= 9000.0f*RELEASE) 
 				GameObject::velocity += 500.0f*RELEASE; 
 				spawnTime = 300.0f / GameObject::velocity;
 			}
@@ -126,7 +126,7 @@ void Game::GameLoop()
 				{	
 					if (Random(0, level) != 0)
 					{ 
-						gameObjectManager.Add(" ", new Obstacle(Random(1, 3)));
+						gameObjectManager.Add(" ", new Obstacle(Random(1, 4)));
 					}
 					q = 0;
 				}

@@ -6,10 +6,10 @@ float roadBegin = (WIDTH - GameObject::roadWidth)*0.5f;
 Coin::Coin()//x coordinate is from the left side of the road
 {
 	obsNo = -1;
-	width = 60.0f; height = 60.0f; thickness = 30.0f;
+	width = 70.0f; height = 70.0f; thickness = 30.0f;
 	roadX = (float)Game::Random(0, (int)(GameObject::roadWidth - thickness));
 	z = GameObject::roadLength;
-	x =roadBegin +roadX+GameObject::curveX(z); y = Game::Random(1, 3)*Game::yLevel -20.0f;
+	x =roadBegin +roadX+GameObject::curveX(z); y = Game::Random(1, 2)*Game::yLevel -20.0f;
 	p.setPoint(x, y, z);
 	Load("Images/coin.png");
 	SetScale(width*p.Scale() / texture.getSize().x, p.Scale()* height / texture.getSize().y);

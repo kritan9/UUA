@@ -6,25 +6,25 @@ float TimePeriod = 0.5f;
 float uSpeed = 4.05f*Game::yLevel / TimePeriod;
 float acc = 2 * uSpeed / TimePeriod;  
 float t;
-std::string character[]={"Images/character2.png" ,"Images/character.png" };
+std::string character[] = { "Images/character2.png" ,"Images/character.png" };//, "Images/superman.png", "Images/thanos.png" };
 Player::Player() {}
 
 void Player::Reset()
 { 
-	x = (WIDTH - width)*0.5f; y = 250.0f; z = 50.0f; jump = 0; yLevel = 2; 
+	x = (WIDTH - width)*0.5f;  z = 50.0f; jump = 0; yLevel = 1; y = Game::yLevel*yLevel-50.0f;
 }
 
 void Player::Reset(int n)
 {
 	Load(character[n%2]);
-	x = (WIDTH - width)*0.5f; y = 250.0f; z = 50.0f; jump = 0; yLevel = 2;
+	x = (WIDTH - width)*0.5f; z = 50.0f; jump = 0; yLevel = 1; y = Game::yLevel*yLevel - 50.0f;
 }
 
 Player::Player(float Width,float Height)
 {
-	x = (WIDTH - Width)*0.5f; y = 250.0f; z = 50.0f;
+	x = (WIDTH - Width)*0.5f; y = 150.0f; z = 50.0f;
 	p.setPoint(x,y,z);
-	jump = 0;  yLevel = 2;
+	jump = 0;  yLevel = 1;
 	width = Width; height = Height;
 	Load("Images/character2.png");
 	SetScale(Width*p.scale / texture.getSize().x, p.scale* Height / texture.getSize().y);
@@ -36,11 +36,11 @@ void Player::Update(float dt)
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left))	x-=PLAYERVELOCITY*dt;
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right))   x+=PLAYERVELOCITY*dt;
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up) && jump == 0 && (yLevel==2 || yLevel==1))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up) && jump == 0 && /*(yLevel==2 ||*/ yLevel==1)
 	{ 
 		jump = 1; clock.restart(); 
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down) && jump == 0 && (yLevel == 2 || yLevel == 3))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down) && jump == 0 && /*(yLevel == 3 ||*/ yLevel == 2)
 	{ 
 		jump = -1;  clock.restart();
 	}
@@ -52,7 +52,7 @@ void Player::Update(float dt)
 	{
 		t = clock.getElapsedTime().asSeconds();
 		y = (yLevel*Game::yLevel-50.0f) + uSpeed*t-0.5f*acc*t*t;
-		if (yLevel == 2) { if (y >= ((yLevel+1)*Game::yLevel - 50.0f)) { yLevel = 3; y=yLevel*Game::yLevel - 50.0f;  jump = 0; } }
+		//if (yLevel == 2) { if (y >= ((yLevel+1)*Game::yLevel - 50.0f)) { yLevel = 3; y=yLevel*Game::yLevel - 50.0f;  jump = 0; } }
 		if (yLevel == 1) { if (y >= ((yLevel + 1)*Game::yLevel - 50.0f)) { yLevel = 2; y=yLevel*Game::yLevel - 50.0f;  jump = 0; } }
 	}
 	if (jump == -1)
@@ -60,11 +60,11 @@ void Player::Update(float dt)
 		t = clock.getElapsedTime().asSeconds();
 		y = (yLevel*Game::yLevel - 50.0f) - uSpeed * t + 0.5f*acc*t*t;
 		if (yLevel == 2) { if (y <= ((yLevel - 1)*Game::yLevel - 50.0f)) { yLevel = 1; y=yLevel*Game::yLevel - 50.0f;  jump = 0;} }
-		if (yLevel == 3) { if (y <= ((yLevel - 1)*Game::yLevel - 50.0f)) { yLevel = 2; y=yLevel*Game::yLevel - 50.0f;  jump = 0;} }
+		//if (yLevel == 3) { if (y <= ((yLevel - 1)*Game::yLevel - 50.0f)) { yLevel = 2; y=yLevel*Game::yLevel - 50.0f;  jump = 0;} }
 	}
-	if (y > 3 * Game::yLevel - 50.0f)
+	if (y > 2/*3*/ * Game::yLevel - 50.0f)
 	{
-		y = 3.0f * Game::yLevel - 50.0f; yLevel = 3; jump = 0;
+		y = 2.0f * Game::yLevel - 50.0f; yLevel = 2; jump = 0; //3.0f  3
 	}
 	if (y < Game::yLevel - 50.0f) 
 	{
@@ -78,12 +78,12 @@ void Player::Update(float dt)
 
 sf::Vector3f Player::position3d()
 {
-	return sf::Vector3f(x+0.1f*width, y, z);
+	return sf::Vector3f(x+20.0f, y, z);
 }
 
 sf::Vector3f Player::size()
 {
-	return sf::Vector3f(0.9f*width, -50.0f, -300.0f);
+	return sf::Vector3f(width-40.0f, -50.0f, -300.0f);
 }
 
 Player::~Player()
