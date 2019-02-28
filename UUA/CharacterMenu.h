@@ -12,8 +12,8 @@ class CharacterMenu
 	sf::Sprite options;
 	sf::Texture arr[2];
 	sf::Sprite arrows[2];
-	sf::Texture dem[2];
-	sf::Sprite demo[2];
+	sf::Texture dem[4];
+	sf::Sprite demo[4];
 	float offsetX, offsetY;
 public:
 	static int pos;

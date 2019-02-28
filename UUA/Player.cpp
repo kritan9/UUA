@@ -6,7 +6,7 @@ float TimePeriod = 0.5f;
 float uSpeed = 4.05f*Game::yLevel / TimePeriod;
 float acc = 2 * uSpeed / TimePeriod;  
 float t;
-std::string character[] = { "Images/character2.png" ,"Images/character.png" };//, "Images/superman.png", "Images/thanos.png" };
+int Player::playerNo = 0;
 Player::Player() {}
 
 void Player::Reset()
@@ -16,8 +16,13 @@ void Player::Reset()
 
 void Player::Reset(int n)
 {
-	Load(character[n%2]);
+	playerNo = n % 4;
 	x = (WIDTH - width)*0.5f; z = 50.0f; jump = 0; yLevel = 1; y = Game::yLevel*yLevel - 50.0f;
+}
+
+void Player::Draw(sf::RenderWindow & renderWindow)
+{
+		renderWindow.draw(sprite[playerNo]);
 }
 
 Player::Player(float Width,float Height)
@@ -26,11 +31,19 @@ Player::Player(float Width,float Height)
 	p.setPoint(x,y,z);
 	jump = 0;  yLevel = 1;
 	width = Width; height = Height;
-	Load("Images/character2.png");
-	SetScale(Width*p.scale / texture.getSize().x, p.scale* Height / texture.getSize().y);
 	SetPosition(p.getScreenPoint().x, p.getScreenPoint().y);
+	texture[0].loadFromFile("Images/character2.png");
+	texture[1].loadFromFile("Images/character.png");
+	texture[2].loadFromFile("Images/thanos.png");
+	texture[3].loadFromFile("Images/superman.png");
 
+	for (int i = 0; i < 4; i++)
+	{
+		sprite[i].setTexture(texture[i]);
+		sprite[i].setScale(sf::Vector2f(Width*p.scale / texture[i].getSize().x, p.scale* Height / texture[i].getSize().y));
+	}
 }
+
 
 void Player::Update(float dt)
 {
@@ -74,17 +87,19 @@ void Player::Update(float dt)
 	}
 
 	p.setPoint(x, y, z);
-	sprite.setRotation(-40.0f*(x+width*0.5f) / GameObject::roadWidth + 20.0f);
-	SetPosition(p.getScreenPoint().x, p.getScreenPoint().y);
+		sprite[playerNo].setRotation(-40.0f*(x + width * 0.5f) / GameObject::roadWidth + 20.0f);
+		sprite[playerNo].setPosition(p.getScreenPoint().x, p.getScreenPoint().y);
 }
 
 sf::Vector3f Player::position3d()
 {
+	if(playerNo==3) return sf::Vector3f(x + 35.0f, y, z);
 	return sf::Vector3f(x+20.0f, y, z);
 }
 
 sf::Vector3f Player::size()
 {
+	if (playerNo == 3) return sf::Vector3f(width - 55.0f, -50.0f, -300.0f);
 	return sf::Vector3f(width-40.0f, -50.0f, -300.0f);
 }
 

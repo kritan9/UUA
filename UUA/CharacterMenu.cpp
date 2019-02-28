@@ -10,6 +10,12 @@ CharacterMenu::CharacterMenu()
 	demo[0].setTexture(dem[0]);
 	dem[1].loadFromFile("Images/demo2.png");
 	demo[1].setTexture(dem[1]);
+	dem[2].loadFromFile("Images/demo3.png");
+	demo[2].setTexture(dem[2]);
+	demo[2].setScale(sf::Vector2f(0.7f*float(dem[0].getSize().x) / dem[2].getSize().x, float(dem[0].getSize().y) / dem[2].getSize().y));
+	dem[3].loadFromFile("Images/demo4.png");
+	demo[3].setTexture(dem[3]);
+	demo[3].setScale(sf::Vector2f(float(dem[0].getSize().x) / dem[3].getSize().x, 1.3f*float(dem[0].getSize().y) / dem[3].getSize().y));
 	menuBar.setTexture(t);
 	menuBar.setPosition(0.5f*(WIDTH - menuBar.getTextureRect().width), 0.5f*(HEIGHT - menuBar.getTextureRect().height));
 	tx.loadFromFile("Images/text2.png");
@@ -27,6 +33,8 @@ CharacterMenu::CharacterMenu()
 	options.setPosition(menuBar.getPosition() + sf::Vector2f(offsetX, offsetY + 100.0f*3));
 	demo[0].setPosition(menuBar.getPosition() + sf::Vector2f(10.0f, offsetY-85.0f ));
 	demo[1].setPosition(menuBar.getPosition() + sf::Vector2f(100.0f, offsetY - 50.0f));
+	demo[2].setPosition(menuBar.getPosition() + sf::Vector2f(80.0f, offsetY - 85.0f));
+	demo[3].setPosition(menuBar.getPosition() + sf::Vector2f(30.0f, offsetY - 145.0f));
 }
 
 void CharacterMenu::Draw(sf::RenderWindow& window)
@@ -35,7 +43,7 @@ void CharacterMenu::Draw(sf::RenderWindow& window)
 	window.draw(options);
 	window.draw(arrows[0]);
 	window.draw(arrows[1]);
-	window.draw(demo[pos % 2]);
+	window.draw(demo[pos % 4]);
 	window.draw(txt);
 }
 
