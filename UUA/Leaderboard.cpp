@@ -22,7 +22,7 @@ Leaderboard::Leaderboard()
 	for (int i = 0; i < 5; i++)
 	{
 		text[i].setFont(Game::font); 
-		text[i].setString(scorers.names[i] +":"+ Marshmellow::numToString(scorers.scores[i]));
+		text[i].setString((scorers.names[i] +":"+ Marshmellow::numToString(scorers.scores[i])).c_str());
 		text[i].setPosition(menuBar.getPosition() + sf::Vector2f(offsetX, offsetY-30.0f + 60.0f*i));
 	}
 
@@ -68,7 +68,7 @@ void Leaderboard::Store()
 	scoreFile.close();
 	for (int i = 0; i < 5; i++)
 	{
-		text[i].setString(scorers.names[i] + " : " + Marshmellow::numToString(scorers.scores[i]));
+		text[i].setString((scorers.names[i] + " : " + Marshmellow::numToString(scorers.scores[i])).c_str());
 	}
 }
 

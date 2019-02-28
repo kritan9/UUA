@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "Player.h"
-#define PLAYERVELOCITY 3000.0f
+#define PLAYERVELOCITY 3000.0f*RELEASE
 
 float TimePeriod = 0.5f;
 float uSpeed = 4.05f*Game::yLevel / TimePeriod;
@@ -61,6 +61,14 @@ void Player::Update(float dt)
 		y = (yLevel*Game::yLevel - 50.0f) - uSpeed * t + 0.5f*acc*t*t;
 		if (yLevel == 2) { if (y <= ((yLevel - 1)*Game::yLevel - 50.0f)) { yLevel = 1; y=yLevel*Game::yLevel - 50.0f;  jump = 0;} }
 		if (yLevel == 3) { if (y <= ((yLevel - 1)*Game::yLevel - 50.0f)) { yLevel = 2; y=yLevel*Game::yLevel - 50.0f;  jump = 0;} }
+	}
+	if (y > 3 * Game::yLevel - 50.0f)
+	{
+		y = 3.0f * Game::yLevel - 50.0f; yLevel = 3; jump = 0;
+	}
+	if (y < Game::yLevel - 50.0f) 
+	{
+		y = 1.0f * Game::yLevel - 50.0f; yLevel = 1; jump = 0;
 	}
 
 	p.setPoint(x, y, z);

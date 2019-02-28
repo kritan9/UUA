@@ -41,8 +41,8 @@ void Death::Draw(sf::RenderWindow& window)
 }
 void Death::Update()
 {
-	text1.setString("Score: " + Marshmellow::numToString(Game::score));
-	text2.setString(" Coin: " + Marshmellow::numToString(Game::coinCount));
+	text1.setString(("Score: " + Marshmellow::numToString(Game::score)).c_str());
+	text2.setString((" Coin: " + Marshmellow::numToString(Game::coinCount)).c_str());
 	static int mouseFlag = 0;
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && mouseFlag == 0)
 	{

@@ -1,7 +1,8 @@
 #pragma once
 #include "pch.h"
 #include "Game.h"
-#define VELOCITY 5000.0f
+#define VELOCITY 5000.0f 
+#define RELEASE 1.0f
 class GameObject
 {
 private:

@@ -43,7 +43,7 @@ int scoreRecord::Update()
 	{
 		flag = 0;
 	}
-	nameEntered.setString(name);
+	nameEntered.setString(name.c_str());
 	return 0;
 }
 

@@ -107,16 +107,16 @@ void Game::GameLoop()
 		{
 			score = int(level * 2 * clockTotal.getElapsedTime().asSeconds())+coinCount*2;
 			text1.setString(("Score: " + Marshmellow::numToString(score)).c_str());
-			text2.setString(" Coin: " + Marshmellow::numToString(coinCount));
-			text3.setString("Level: " + Marshmellow::numToString(level));
+			text2.setString((" Coin: " + Marshmellow::numToString(coinCount)).c_str());
+			text3.setString(("Level: " + Marshmellow::numToString(1+level/4)).c_str());
 			static int q = 1; static float delT = 0.0f; static float delT2 = 0.0f;
 			delT += clock.getElapsedTime().asSeconds(); delT2 += clock.getElapsedTime().asSeconds();
-			if (delT2 > 3.0f)
+			if (delT2 > 3.0f)//3.0f
 			{
 				delT2 = 0.0f;
 				level++;
-				if (GameObject::velocity <= 20000.0f)
-				GameObject::velocity += 500.0f;
+				if (GameObject::velocity <= 10000.0f*RELEASE) 
+				GameObject::velocity += 500.0f*RELEASE; 
 				spawnTime = 300.0f / GameObject::velocity;
 			}
 			if (delT >= spawnTime)
@@ -126,7 +126,7 @@ void Game::GameLoop()
 				{	
 					if (Random(0, level) != 0)
 					{ 
-						gameObjectManager.Add(" ", new Obstacle(Random(1, 1)));
+						gameObjectManager.Add(" ", new Obstacle(Random(1, 3)));
 					}
 					q = 0;
 				}

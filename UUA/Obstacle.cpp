@@ -27,9 +27,17 @@ Obstacle::Obstacle(int n)
 		width = 300.0f; height = 100.0f; thickness = 50.0f;
 		Load("Images/Obstacle.png");
 	}
-	if (n == 1)
+	if (n == 1 || n==2)
 	{
 		width = 500.0f; height = 150.0f; thickness = 50.0f; Load("Images/dr/dr 01 copy.png");
+	}
+	if (n == 3)
+	{
+		width = 259.0f; height = 224.0f; thickness = 60.0f; Load("Images/rocket.png");
+	}
+	if (n == 5)
+	{
+		width = 186.0f; height = 100.0f; thickness = 50.0f; Load("Images/goku.png");
 	}
 	roadX = (float)Game::Random(0, (int)(GameObject::roadWidth - thickness));
 	z = GameObject::roadLength;
@@ -37,7 +45,12 @@ Obstacle::Obstacle(int n)
 		x = -600.0f;
 	else
 		x = roadBeg + roadX + GameObject::curveX(z); 
-	y = Game::Random(1, 3)*Game::yLevel;
+	
+	if(n==3) y= y = Game::Random(2, 3)*Game::yLevel;
+	else
+	{
+		y = Game::Random(1, 3)*Game::yLevel;
+	}
 	p.setPoint(x, y, z);
 		SetScale(width*p.Scale() / texture.getSize().x, p.Scale()* height / texture.getSize().y);
 		SetPosition(p.getScreenPoint().x, p.getScreenPoint().y);
@@ -74,7 +87,7 @@ sf::Vector3f Obstacle::position3d()
 
 sf::Vector3f Obstacle::size()
 {
-	if(obsNo==1) return sf::Vector3f(width-40.0f, -height, thickness);
+	if(obsNo==1 || obsNo ==2 ) return sf::Vector3f(width-40.0f, -height, thickness);
 	return sf::Vector3f(width, -height, thickness);
 }
 
