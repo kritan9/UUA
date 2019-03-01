@@ -5,6 +5,12 @@
 
 Marshmellow::Marshmellow(float framePs, int noOfF, std::string nam, std::string ext)
 {
+	loading.loadFromFile("Images/Loading.jpg");
+	Loading.setTexture(loading);
+	Loading.setScale(sf::Vector2f(float(WIDTH) / loading.getSize().x, float(HEIGHT) / loading.getSize().y));
+	Game::window.clear();
+	Game::window.draw(Loading);
+	Game::window.display();
 	temp = 0;
 	name = nam; extension = ext; fps = framePs; noOfFrames = noOfF;
 	//texture = new sf::Texture[noOfFrames];

@@ -4,6 +4,8 @@
 class Marshmellow
 {
 	sf::Texture texture[50];
+	sf::Texture loading;
+	sf::Sprite Loading;
 	sf::Sprite dance;
 	int noOfFrames;
 	float fps;

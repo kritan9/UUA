@@ -7,7 +7,7 @@
 #include "Obstacle.h"
 
 Game::GameState Game::gameState = Game::Menu;
-sf::RenderWindow Game::window;
+sf::RenderWindow Game::window(sf::VideoMode(WIDTH, HEIGHT, 32), "Up Up And Away");
 sf::Clock Game::clock;
 sf::Clock Game::clockTotal;
 GameObjectManager Game::gameObjectManager;
@@ -52,18 +52,19 @@ int Game::Random(int a, int b)
 }
 void Game::Start()
 {
+	//window.create(sf::VideoMode(WIDTH, HEIGHT, 32), "Up Up And Away");
+	if (window.isOpen() == false)
+	{
+		std::cerr << "Coundnot Open Window";
+	}
 	lgo.loadFromFile("Images/logo.png");
 	logo.setTexture(lgo);
+	logo.setPosition(sf::Vector2f((WIDTH-lgo.getSize().x)*0.5f,0.0f));
 	font.loadFromFile("Images/constan.ttf");
 	text1.setFont(font); text2.setFont(font);
 	text3.setFont(font); 
 	text2.setPosition(sf::Vector2f(WIDTH - 200.0f, 0));
 	text3.setPosition(sf::Vector2f(WIDTH*0.5-100.0f, 0));
-	window.create(sf::VideoMode(WIDTH, HEIGHT, 32), "Up Up And Away");
-	if (window.isOpen() == false)
-	{
-		std::cerr << "Coundnot Open Window";
-	}
 	coinBuffer.loadFromFile("Sounds/coin.wav");
 	coin.setBuffer(coinBuffer);
 	coin.setVolume(35);
