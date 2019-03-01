@@ -24,7 +24,6 @@ Marshmellow::Marshmellow(float framePs, int noOfF, std::string nam, std::string 
 		if (i < 9) texture[i].loadFromFile(name + "0" + numToString(i + 1) + extension);
 		else texture[i].loadFromFile(name + numToString(i + 1) + extension);
 	}
-	
 	dance.setScale(sf::Vector2f((float)WIDTH/ texture[0].getSize().x,(float)HEIGHT/ texture[0].getSize().y));
 }
 

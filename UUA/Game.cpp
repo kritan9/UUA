@@ -15,7 +15,7 @@ Player player(150.0f, 150.0f);
 sf::Event Game::event;
 int Game::level = 1;
 float Game::yLevel = 200.0f;
-float Game::spawnTime = 300.0f / GameObject::velocity;
+float Game::spawnTime = 200.0f / GameObject::velocity;
 int Game::score = 0;
 int Game::coinCount = 0;
 sf::Sound Game::coin;
@@ -116,9 +116,9 @@ void Game::GameLoop()
 			{
 				delT2 = 0.0f;
 				level++;
-				if (GameObject::velocity <= 9000.0f*RELEASE) 
+				if (GameObject::velocity <= 15000.0f*RELEASE) 
 				GameObject::velocity += 500.0f*RELEASE; 
-				spawnTime = 300.0f / GameObject::velocity;
+				spawnTime = 200.0f / GameObject::velocity;
 			}
 			if (delT >= spawnTime)
 			{

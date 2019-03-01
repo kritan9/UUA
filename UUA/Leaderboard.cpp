@@ -26,7 +26,6 @@ Leaderboard::Leaderboard()
 		text[i].setPosition(menuBar.getPosition() + sf::Vector2f(offsetX, offsetY-30.0f + 60.0f*i));
 	}
 
-	
 }
 
 void Leaderboard::Draw(sf::RenderWindow& window)
