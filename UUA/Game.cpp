@@ -127,7 +127,7 @@ void Game::GameLoop()
 				{	
 					if (Random(0, level) != 0)
 					{ 
-						gameObjectManager.Add(" ", new Obstacle(Random(1, 4)));
+						gameObjectManager.Add(" ", new Obstacle(Random(1, 7)));
 					}
 					q = 0;
 				}

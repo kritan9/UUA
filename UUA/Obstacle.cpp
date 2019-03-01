@@ -32,19 +32,19 @@ Obstacle::Obstacle(int n)
 		width = 300.0f; height = 100.0f; thickness = 50.0f;
 		Load("Images/Obstacle.png");
 	}
-	if (n == 1 )
+	if (n == 1 || n==5)
 	{
 		width = 500.0f; height = 150.0f; thickness = 50.0f; Load("Images/dr/dr 01 copy.png");
 	}
-	if (n == 2)
+	if (n == 2 || n==6)
 	{
 		width = 500.0f; height = 200.0f; thickness = 50.0f; Load("Images/ob/ob (1).png");
 	}
-	if (n == 3)
+	if (n == 3 || n==7)
 	{
 		width = 259.0f; height = 224.0f; thickness = 60.0f; Load("Images/rocket.png");
 	}
-	if (n == 4)
+	if (n == 4 )
 	{
 		width = 220.0f; height = 150.0f; thickness = 50.0f; Load("Images/goku.png");
 	}
@@ -65,13 +65,13 @@ Obstacle::Obstacle(int n)
 void Obstacle::Update(float dt)
 {
 	z -= velocity * dt;
-	if(obsNo!=0)
+	if (obsNo != 0)
 		x = roadX + roadBeg + GameObject::curveX(z);
 	p.setPoint(x, y, z);
 	SetScale(width*p.Scale() / texture.getSize().x, p.Scale()* height / texture.getSize().y);
 	sprite.setRotation(-20.0f*(x - curveX(z) + width * 0.5f) / WIDTH + 10.0f);
 	SetPosition(p.getScreenPoint().x, p.getScreenPoint().y);
-	if (obsNo == 1)
+	if (obsNo == 1 || obsNo==5)
 	{
 		if (imageNo >= 10) imageNo = 0;
 		if (imageNo == 0) sprite.setTexture(xyz.obs[0]);
@@ -82,7 +82,7 @@ void Obstacle::Update(float dt)
 
 		}
 	}
-	if (obsNo == 2)
+	if (obsNo == 2 || obsNo == 6)
 	{
 		if (imageNo >= 16) imageNo = 0;
 		if (imageNo == 0) sprite.setTexture(xyz.obs2[0]);
@@ -98,17 +98,17 @@ void Obstacle::Update(float dt)
 
 sf::Vector3f Obstacle::position3d()
 {
-	if(obsNo==1 ) return sf::Vector3f(x+20.0f, y, z);
-	else if (obsNo == 2) return sf::Vector3f(x + 35.0f, y, z);
-	else if (obsNo == 3) return sf::Vector3f(x + 15.0f, y, z);
+	if(obsNo==1 || obsNo == 5) return sf::Vector3f(x+20.0f, y, z);
+	else if (obsNo == 2 || obsNo == 6) return sf::Vector3f(x + 35.0f, y, z);
+	else if (obsNo == 3 || obsNo == 7) return sf::Vector3f(x + 15.0f, y, z);
 	else return sf::Vector3f(x , y, z);
 }
 
 sf::Vector3f Obstacle::size()
 {
-	if(obsNo==1 ) return sf::Vector3f(width-40.0f, -height, thickness);
-	else if (obsNo == 2) return sf::Vector3f(width - 70.0f, -height, thickness);
-	else if (obsNo == 3) return sf::Vector3f(width - 30.0f, -height, thickness);
+	if(obsNo==1 || obsNo == 5) return sf::Vector3f(width-40.0f, -height, thickness);
+	else if (obsNo == 2 || obsNo == 6) return sf::Vector3f(width - 70.0f, -height, thickness);
+	else if (obsNo == 3 || obsNo == 7) return sf::Vector3f(width - 30.0f, -height, thickness);
 	return sf::Vector3f(width, -height, thickness);
 }
 
