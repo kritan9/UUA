@@ -80,7 +80,7 @@ void Death::Update()
 
 bool Mouse::Intersect(float x,float y,float w,float h)
 {
-	sf::Vector2i mouse = sf::Mouse::getPosition(Game::window);
+	sf::Vector2i mouse = sf::Vector2i(int(sf::Mouse::getPosition(Game::window).x*float(WIDTH)/Game::window.getSize().x), int(sf::Mouse::getPosition(Game::window).y*float(HEIGHT) / Game::window.getSize().y));
 	if (mouse.x < x && mouse.x < x + w) return false;
 	if (mouse.x > x && mouse.x > x + w) return false;
 	if (mouse.y < y && mouse.y < y + h) return false;

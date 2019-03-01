@@ -69,7 +69,7 @@ void Obstacle::Update(float dt)
 		x = roadX + roadBeg + GameObject::curveX(z);
 	p.setPoint(x, y, z);
 	SetScale(width*p.Scale() / texture.getSize().x, p.Scale()* height / texture.getSize().y);
-	sprite.setRotation(-20.0f*(x - curveX(z) + width * 0.5f) / GameObject::roadWidth + 10.0f);
+	sprite.setRotation(-20.0f*(x - curveX(z) + width * 0.5f) / WIDTH + 10.0f);
 	SetPosition(p.getScreenPoint().x, p.getScreenPoint().y);
 	if (obsNo == 1)
 	{

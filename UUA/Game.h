@@ -10,7 +10,7 @@
 #include <SFML/Audio.hpp>
 #include <time.h>
 
-#define WIDTH 1024
+#define WIDTH 1366
 #define HEIGHT 768
 
 class GameObjectManager;

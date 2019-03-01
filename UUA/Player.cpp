@@ -87,7 +87,7 @@ void Player::Update(float dt)
 	}
 
 	p.setPoint(x, y, z);
-		sprite[playerNo].setRotation(-40.0f*(x + width * 0.5f) / GameObject::roadWidth + 20.0f);
+		sprite[playerNo].setRotation(-40.0f*(x + width * 0.5f) / WIDTH + 20.0f);
 		sprite[playerNo].setPosition(p.getScreenPoint().x, p.getScreenPoint().y);
 }
 
