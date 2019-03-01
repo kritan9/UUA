@@ -10,6 +10,7 @@ Game::GameState Game::gameState = Game::Menu;
 sf::RenderWindow Game::window(sf::VideoMode(WIDTH, HEIGHT, 32), "Up Up And Away");
 sf::Clock Game::clock;
 sf::Clock Game::clockTotal;
+sf::Clock Game::scoreClock;
 GameObjectManager Game::gameObjectManager;
 Player player(150.0f, 150.0f);
 sf::Event Game::event;
@@ -106,7 +107,7 @@ void Game::GameLoop()
 		{
 		case Playing:
 		{
-			score = int(level * 2 * clockTotal.getElapsedTime().asSeconds())+coinCount*2;
+			score = int(level * 2 * scoreClock.getElapsedTime().asSeconds())+coinCount*2;
 			text1.setString(("Score: " + Marshmellow::numToString(score)).c_str());
 			text2.setString((" Coin: " + Marshmellow::numToString(coinCount)).c_str());
 			text3.setString(("Level: " + Marshmellow::numToString(1+level/4)).c_str());
@@ -192,6 +193,7 @@ void Game::GameLoop()
 			{
 				coinCount = 0;
 				clock.restart();
+				scoreClock.restart();
 				clockTotal.restart();
 				bkgMusic[audioPos].setLoop(false);
 				bkgMusic[audioPos].stop();
@@ -222,6 +224,7 @@ void Game::GameLoop()
 				bkgMusic[audioPos].play();
 				player.Reset(CharacterMenu::pos);
 				clock.restart();
+				scoreClock.restart();
 				clockTotal.restart();
 			}
 			if (event.type == sf::Event::Closed)
