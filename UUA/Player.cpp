@@ -40,7 +40,8 @@ Player::Player(float Width,float Height)
 	for (int i = 0; i < 4; i++)
 	{
 		sprite[i].setTexture(texture[i]);
-		sprite[i].setScale(sf::Vector2f(Width*p.scale / texture[i].getSize().x, p.scale* Height / texture[i].getSize().y));
+		if(i==2) sprite[i].setScale(sf::Vector2f(Width*p.scale / texture[i].getSize().x, 0.25f+p.scale* Height / texture[i].getSize().y));
+		else sprite[i].setScale(sf::Vector2f(Width*p.scale / texture[i].getSize().x, p.scale* Height / texture[i].getSize().y));
 	}
 }
 
